@@ -20,22 +20,22 @@ export const Footer = ({ className }: { className?: string }) => {
           >
             <PlantpediaLogo />
             <Typography variant="h5" component="a" href="/" title="Go home">
-              Platzi's Plantpedia
+              Andrea Becerra Concejala
             </Typography>
           </Grid>
           <Grid item xs={6} sm={4}>
             <Typography variant="h5" className="mb-4">
-              Pages
+              Paginas
             </Typography>
             <ul className="p0">
               <li className="pb-1">
-                <a href="/getting-started">Getting started</a>
+                <a href="/getting-started">Empezar</a>
               </li>
               <li className="pb-1">
-                <a href="/search">Search</a>
+                <a href="/search">Buscar</a>
               </li>
               <li className="pb-1">
-                <a href="/top-stories">Top stories</a>
+                <a href="/top-stories">Mejores Historias</a>
               </li>
             </ul>
           </Grid>
@@ -44,36 +44,36 @@ export const Footer = ({ className }: { className?: string }) => {
               About
             </Typography>
             <p>
-              <a href="https://platzi.com/">Platzi's Next.js Course by</a>{' '}
-              <a href="https://twitter.com/jonalvarezz">@jonalvarezz</a>
+              <a href="/">Rodrigo's web development</a>{' '}
+              <a href="/">@clumsypunch</a>
             </p>
             <div className="mt-3">
               <a
-                href="https://twitter.com/jonalvarezz"
-                title="Follow @jonalvarezz on Twitter"
+                href="https://facebook.com/andreaconcejala"
+                title="Follow @andreaconcejala on Facebook"
                 className="pr-4"
               >
-                TW
+                FB
               </a>
               <a
-                href="https://github.com/jonalvarezz"
-                title="Open this project on GitHub"
+                href="https://instagram.com/andreaconcejala"
+                title="Follow @andreaconcejala on Instagram"
               >
-                GH
+                IG
               </a>
             </div>
           </Grid>
         </Grid>
         <div className="mt-20 border-t-2 border-gray-600 text-gray-600 pt-6 flex justify-between">
           <p>
-            Images from
-            <a target="_blank" href="https://www.pexels.com" title="Pexels">
-              Pexels
+            Partido Republicano de Chile - 2024 todos los derechos reservados ©
+            <a target="_blank" href="https://www.partidorepublicanodechile.com" title="PR">
+              PR Chile
             </a>
           </p>
           <p>
-            <a target="_blank" href="https://jonalvarezz.com">
-              jonalvarezz.com
+            <a target="_blank" href="https://andreacocejala.cl">
+              andreacocejala.cl
             </a>
           </p>
         </div>

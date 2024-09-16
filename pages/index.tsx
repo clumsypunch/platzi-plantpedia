@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   return {
     props: { plants },
-    revalidate: 5 * 60, // once every five minutes
+    revalidate: 5 * 60, // una vez cada cinco minutos
   }
 }
 
@@ -24,16 +24,17 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
-      <Hero {...plants[0]} className="mb-20" />
-      <Authors className="mb-10" />
+      <Hero {...plants[0]} className="mb-8 md:mb-20" />
+      <Authors className="mb-6 md:mb-10" />
       <PlantCollection
         plants={plants.slice(1, 3)}
         variant="vertical"
-        className="mb-24"
+        className="mb-8 md:mb-24"
       />
       <PlantCollection
         plants={plants.length > 8 ? plants.slice(3, 9) : plants}
         variant="square"
+        className='mb-8 md:mb-24'
       />
     </Layout>
   )

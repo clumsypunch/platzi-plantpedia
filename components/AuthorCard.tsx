@@ -29,19 +29,19 @@ export function AuthorCard({
         <div className="flex">
           <a
             href={linkedIn}
-            title={`Follow ${fullName} on LinkedIn`}
+            title={`Follow ${fullName} on Facebook`}
             target="_blank"
             className="pr-4"
           >
-            LI
+            FB
           </a>
           <a
             href={twitter}
-            title={`Follow ${fullName} on Twitter`}
+            title={`Follow ${fullName} on Instagram`}
             target="_blank"
             className="pr-4"
           >
-            TW
+            IG
           </a>
         </div>
       </div>

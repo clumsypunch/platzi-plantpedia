@@ -7,23 +7,23 @@ import { PreviewModeBanner } from './PreviewModeBanner'
 
 export function Header() {
   return (
-    <>
+    <div className="sticky top-0 z-50 bg-white">
       <PreviewModeBanner />
       <div className="mx-auto" style={{ maxWidth: '98%' }}>
-        <NavBar title="🌿 Plantpedia">
-          <div>
-            <NavLink href="/top-stories">Top Stories</NavLink>
-          </div>
+        <NavBar title="Andrea Becerra">
+          <NavLink href="/top-stories">Mejores Historias</NavLink>
         </NavBar>
       </div>
-    </>
+    </div>
   )
 }
 
-function NavLink({ children, ...linkProps }: PropsWithChildren<LinkProps>) {
+type NavLinkProps = PropsWithChildren<LinkProps>
+
+function NavLink({ children, href, ...linkProps }: NavLinkProps) {
   return (
-    <Link {...linkProps} passHref>
-      <Button color="inherit" variant="text" component="a">
+    <Link href={href} {...linkProps} passHref>
+      <Button color="inherit" variant="text">
         {children}
       </Button>
     </Link>

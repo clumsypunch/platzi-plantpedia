@@ -1,15 +1,12 @@
 import { GetStaticProps, InferGetStaticPropsType, GetStaticPaths } from 'next'
 import Link from 'next/link'
-
 import { getPlant, getPlantList, getCategoryList } from '@api'
-
 import { Layout } from '@components/Layout'
 import { Typography } from '@ui/Typography'
 import { Grid } from '@ui/Grid'
-
 import { RichText } from '@components/RichText'
 import { AuthorCard } from '@components/AuthorCard'
-import { PlantEntryInline } from '@components/PlantCollection'
+// import { PlantEntryInline } from '@components/PlantCollection'
 import { Image } from '@components/Image'
 
 type PlantEntryPageProps = {
@@ -32,11 +29,7 @@ export const getStaticProps: GetStaticProps<PlantEntryPageProps> = async ({
 
   try {
     const plant = await getPlant(slug, preview)
-
-    // Sidebar – This could be a single request since we are using GraphQL :)
-    const otherEntries = await getPlantList({
-      limit: 5,
-    })
+    const otherEntries = await getPlantList({ limit: 5 })
     const categories = await getCategoryList({ limit: 10 })
 
     return {
@@ -45,7 +38,7 @@ export const getStaticProps: GetStaticProps<PlantEntryPageProps> = async ({
         otherEntries,
         categories,
       },
-      revalidate: 5 * 60, // once every five minutes
+      revalidate: 5 * 60,
     }
   } catch (e) {
     return {
@@ -61,8 +54,6 @@ type PathType = {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Match home query.
-  // @TODO how do we generate all of our pages if we don't know the number? 🤔
   const plantEntriesToGenerate = await getPlantList({ limit: 10 })
 
   const paths: PathType[] = plantEntriesToGenerate.map(({ slug }) => ({
@@ -73,8 +64,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-
-    // Block until the server gets its data. Like in Server side rendering
     fallback: 'blocking',
   }
 }
@@ -88,7 +77,7 @@ export default function PlantEntryPage({
     <Layout>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8} lg={9} component="article">
-          <figure>
+          <figure className="mb-4">
             <Image
               width={952}
               aspectRatio="4:3"
@@ -110,8 +99,20 @@ export default function PlantEntryPage({
               Recent posts
             </Typography>
             {otherEntries.map((plantEntry) => (
-              <article className="mb-4" key={plantEntry.id}>
-                <PlantEntryInline {...plantEntry} />
+              <article className="mb-4 flex items-center gap-4" key={plantEntry.id}>
+                <Link href={`/entry/${plantEntry.slug}`} passHref>
+                  <a>
+                    <Image
+                      width={96}
+                      aspectRatio="1:1"
+                      layout="intrinsic"
+                      src={plantEntry.image.url}
+                      alt={plantEntry.image.title}
+                      className="object-cover"
+                    />
+                  </a>
+                </Link>
+                <Typography variant="h6">{plantEntry.plantName}</Typography>
               </article>
             ))}
           </section>

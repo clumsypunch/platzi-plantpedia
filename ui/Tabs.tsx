@@ -8,6 +8,13 @@ const useStyles = makeStyles((theme) => ({
     borderRight: `1px solid ${theme.palette.divider}`,
     flexShrink: 0,
   },
+  horizontalTabs: {
+    overflowX: 'auto', // Make tabs scrollable
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    paddingBottom: theme.spacing(1),
+  },
 }))
 
 export type TabItem = {
@@ -55,14 +62,19 @@ export function VerticalTabs({ tabs, currentTab, onTabChange }: TabsProps) {
     { tabItems: [], tabPanels: [] }
   )
 
+  // Detect screen size to adjust tabs layout
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   return (
-    <section className="flex flex-grow">
+    <section className={`flex flex-grow ${isMobile ? 'flex-col' : ''}`}>
       <Tabs
-        orientation="vertical"
+        orientation={isMobile ? 'horizontal' : 'vertical'}
         value={currentTab}
         onChange={onTabChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
+        aria-label="Tabs example"
+        className={`${isMobile ? classes.horizontalTabs : classes.tabs}`}
+        variant={isMobile ? 'scrollable' : 'standard'}
+        scrollButtons="auto"
       >
         {tabItems}
       </Tabs>
